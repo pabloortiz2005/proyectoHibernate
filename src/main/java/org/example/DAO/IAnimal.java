@@ -27,7 +27,7 @@ public interface IAnimal {
      *@param nombre
      * @return Segun Nombre
      */
-    List<Animal> findByNombre(String nombre);
+    Animal findByNombre(String nombre);
 
 
     /**
