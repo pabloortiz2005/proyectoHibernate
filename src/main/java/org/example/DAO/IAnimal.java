@@ -52,16 +52,23 @@ public interface IAnimal {
      */
     Animal ChangeEstado(Estado estado);
 
-
+    /**
+     *
+     *@param estado
+     * @return Acoger
+     */
+     void Acoger(Estado estado);
 
     Animal create (Animal animal);
 
-    Animal update (Animal animal);
+
+
+
 
     /**
      *
      * @param id
      * @return borra un id concreto
      */
-    boolean deleteById (Integer id);
+    void deleteById (Integer id);
 }

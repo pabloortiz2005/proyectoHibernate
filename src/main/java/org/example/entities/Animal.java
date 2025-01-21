@@ -27,18 +27,18 @@ public class Animal implements Serializable {
     private Estado estado;
 
     @Column(nullable = true)
-    private Estado nombreF;
+    private String nombreF;
 
     @Column(nullable = true)
-    private Estado edadF;
+    private Integer edadF;
 
     @Column(nullable = true)
-    private Estado ciudadF;
+    private String ciudadF;
 
     public Animal() {
     }
 
-    public Animal(Integer id, String nombre, Animales especie, Integer edad, String desc, Estado estado, Estado nombreF, Estado edadF, Estado ciudadF) {
+    public Animal(Integer id, String nombre, Animales especie, Integer edad, String desc, Estado estado, String nombreF, Integer edadF, String ciudadF) {
         this.id = id;
         this.nombre = nombre;
         Especie = especie;
@@ -50,27 +50,27 @@ public class Animal implements Serializable {
         this.ciudadF = ciudadF;
     }
 
-    public Estado getCiudadF() {
+    public String getCiudadF() {
         return ciudadF;
     }
 
-    public void setCiudadF(Estado ciudadF) {
+    public void setCiudadF(String ciudadF) {
         this.ciudadF = ciudadF;
     }
 
-    public Estado getEdadF() {
+    public Integer getEdadF() {
         return edadF;
     }
 
-    public void setEdadF(Estado edadF) {
+    public void setEdadF(Integer edadF) {
         this.edadF = edadF;
     }
 
-    public Estado getNombreF() {
+    public String getNombreF() {
         return nombreF;
     }
 
-    public void setNombreF(Estado nombreF) {
+    public void setNombreF(String nombreF) {
         this.nombreF = nombreF;
     }
 
