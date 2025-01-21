@@ -142,7 +142,7 @@ public class AnimalDAOimpl implements IAnimal{
 
             deleteById(animal7.getId());
         } else {
-            System.out.println("No tiene familia escogida");
+            System.out.println("No tiene familia escogida, cambie el estado a Proceso de acogida para insertar la familia y asi poder acogerlo ");
         }
 
     }

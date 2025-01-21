@@ -11,19 +11,20 @@ public class Animal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = false)
+
     private String nombre;
 
-    @Column(unique = false)
+
+    @Enumerated (EnumType.STRING)
     private Animales Especie;
 
     @Column(nullable = false)
     private Integer edad;
 
-    @Column(unique = false)
-    private String desc;
+    private String descripcion;
 
     @Column(nullable = false)
+    @Enumerated (EnumType.STRING)
     private Estado estado;
 
     @Column(nullable = true)
@@ -41,9 +42,9 @@ public class Animal implements Serializable {
     public Animal(Integer id, String nombre, Animales especie, Integer edad, String desc, Estado estado, String nombreF, Integer edadF, String ciudadF) {
         this.id = id;
         this.nombre = nombre;
-        Especie = especie;
+        this.Especie = especie;
         this.edad = edad;
-        this.desc = desc;
+        this.descripcion = desc;
         this.estado = estado;
         this.nombreF = nombreF;
         this.edadF = edadF;
@@ -83,11 +84,11 @@ public class Animal implements Serializable {
     }
 
     public String getDesc() {
-        return desc;
+        return descripcion;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.descripcion = desc;
     }
 
     public Integer getEdad() {
@@ -129,7 +130,7 @@ public class Animal implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", Especie=" + Especie +
                 ", edad=" + edad +
-                ", desc='" + desc + '\'' +
+                ", desc='" + descripcion + '\'' +
                 ", estado=" + estado +
                 ", nombreF=" + nombreF +
                 ", edadF=" + edadF +
