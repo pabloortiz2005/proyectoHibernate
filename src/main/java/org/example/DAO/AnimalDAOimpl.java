@@ -63,19 +63,23 @@ public class AnimalDAOimpl implements IAnimal{
     }
 
     /**
-     * @param Especie
+     * @param especie
      * @return Segun Especie
      */
     @Override
-    public List<Animal> findByEspecie(Animales Especie) {
+    public List<Animal> findByEspecie(Animales especie) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        List<Animal> animal4 = session.createQuery("from Animal where especie = especie", Animal.class).list();
+
+        List<Animal> animal4 = session.createQuery("from Animal where especie = :especie", Animal.class)
+                .setParameter("especie", especie)
+                .list();
 
         session.close();
 
         return animal4;
     }
+
 
     /**
      * @param estado
@@ -208,7 +212,6 @@ public class AnimalDAOimpl implements IAnimal{
 
         System.out.println("Estado");
 
-
         Estado estado =  RecienAb;
 
         System.out.println(" Estado: (1)Recien Acogido, (2)Veterano en el refugio, (3)En proceso de acogida");
@@ -230,6 +233,7 @@ public class AnimalDAOimpl implements IAnimal{
                 break;
 
         }
+        animal8.setEstado(estado);
 
         if (estado==ProxAcog){
             System.out.print("Nombre: ");

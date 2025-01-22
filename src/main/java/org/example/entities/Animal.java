@@ -16,7 +16,7 @@ public class Animal implements Serializable {
 
 
     @Enumerated (EnumType.STRING)
-    private Animales Especie;
+    private Animales especie;
 
     @Column(nullable = false)
     private Integer edad;
@@ -42,7 +42,7 @@ public class Animal implements Serializable {
     public Animal(Integer id, String nombre, Animales especie, Integer edad, String desc, Estado estado, String nombreF, Integer edadF, String ciudadF) {
         this.id = id;
         this.nombre = nombre;
-        this.Especie = especie;
+        this.especie = especie;
         this.edad = edad;
         this.descripcion = desc;
         this.estado = estado;
@@ -100,11 +100,11 @@ public class Animal implements Serializable {
     }
 
     public Animales getEspecie() {
-        return Especie;
+        return especie;
     }
 
     public void setEspecie(Animales especie) {
-        Especie = especie;
+        especie = especie;
     }
 
     public String getNombre() {
@@ -128,7 +128,7 @@ public class Animal implements Serializable {
         return "Animal{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", Especie=" + Especie +
+                ", Especie=" + especie +
                 ", edad=" + edad +
                 ", desc='" + descripcion + '\'' +
                 ", estado=" + estado +

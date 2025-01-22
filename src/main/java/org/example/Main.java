@@ -40,7 +40,7 @@ import java.util.Scanner;
                 System.out.print("Seleccione una opción: ");
 
                 option = scanner.nextInt();
-                scanner.nextLine(); // Consumir salto de línea
+                scanner.nextLine();
 
                 switch (option) {
                     case 1: // Mostrar todos los animales
@@ -64,7 +64,13 @@ import java.util.Scanner;
                         int opcionEspecie = scanner.nextInt();
                         Animales especie = Animales.values()[opcionEspecie - 1];
                         List<Animal> animalesPorEspecie = animalDAO.findByEspecie(especie);
-                        animalesPorEspecie.forEach(System.out::println);
+                        if (animalesPorEspecie.isEmpty()) {
+                            System.out.println("No se encontraron animales con la especie seleccionada.");
+                        } else {
+                            for (Animal animal : animalesPorEspecie) {
+                                System.out.println(animal);
+                            }
+                        }
                         break;
                     case 5: // Buscar animales por estado
                         System.out.println("Seleccione el estado: (1) Recien Acogido, (2) Veterano en el refugio, (3) En proceso de acogida");
@@ -80,6 +86,12 @@ import java.util.Scanner;
                         if (animalParaCambiar != null) {
                             animalDAO.ChangeEstado(animalParaCambiar.getEstado());
                             System.out.println("Estado cambiado exitosamente.");
+                            session.beginTransaction();
+
+                            session.persist(animalParaCambiar);
+                            session.getTransaction().commit();
+
+                            session.close();
                         } else {
                             System.out.println("Animal no encontrado.");
                         }
@@ -96,6 +108,12 @@ import java.util.Scanner;
                         break;
                     case 8: // Crear un nuevo animal
                         Animal nuevoAnimal = animalDAO.create(new Animal());
+                        session.beginTransaction();
+
+                        session.persist(nuevoAnimal);
+                        session.getTransaction().commit();
+
+                        session.close();
                         System.out.println("Animal creado: " + nuevoAnimal);
                         break;
                     case 9: // Eliminar un animal por ID
