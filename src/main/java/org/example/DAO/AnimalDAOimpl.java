@@ -89,7 +89,9 @@ public class AnimalDAOimpl implements IAnimal{
     public List<Animal> findByEstado(Estado estado) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        List<Animal> animal5 = session.createQuery("from Animal where estado = estado", Animal.class).list();
+        List<Animal> animal5 = session.createQuery("from Animal where estado = :estado", Animal.class)
+                .setParameter("estado", estado)
+                .list();
 
         session.close();
 

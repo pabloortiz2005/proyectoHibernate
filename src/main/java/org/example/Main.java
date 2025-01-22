@@ -77,7 +77,13 @@ import java.util.Scanner;
                         int opcionEstado = scanner.nextInt();
                         Estado estado = Estado.values()[opcionEstado - 1];
                         List<Animal> animalesPorEstado = animalDAO.findByEstado(estado);
-                        animalesPorEstado.forEach(System.out::println);
+                        if (animalesPorEstado.isEmpty()) {
+                            System.out.println("No se encontraron animales con el estado seleccionado.");
+                        } else {
+                            for (Animal animal : animalesPorEstado) {
+                                System.out.println(animal);
+                            }
+                        }
                         break;
                     case 6: // Cambiar estado de un animal
                         System.out.print("Ingrese el ID del animal: ");
@@ -97,14 +103,9 @@ import java.util.Scanner;
                         }
                         break;
                     case 7: // Acoger un animal
-                        System.out.print("Ingrese el ID del animal: ");
-                        int idAcoger = scanner.nextInt();
-                        Animal animalParaAcoger = animalDAO.findById(idAcoger);
-                        if (animalParaAcoger != null) {
-                            animalDAO.Acoger(animalParaAcoger.getEstado());
-                        } else {
-                            System.out.println("Animal no encontrado.");
-                        }
+                        System.out.print("Ingrese el ID del animal a Acoger: ");
+                        int idEliminar2 = scanner.nextInt();
+                        animalDAO.deleteById(idEliminar2);
                         break;
                     case 8: // Crear un nuevo animal
                         Animal nuevoAnimal = animalDAO.create(new Animal());
