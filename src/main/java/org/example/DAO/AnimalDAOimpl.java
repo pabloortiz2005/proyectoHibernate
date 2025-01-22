@@ -102,36 +102,51 @@ public class AnimalDAOimpl implements IAnimal{
      * @param estado
      * @return Cambiar Estado
      */
-    @Override
     public Animal ChangeEstado(Estado estado) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        Animal animal6 = session.find(Animal.class, estado);
-        System.out.println("El estado de este animal es: " + animal6.getEstado());
+
+        Animal animal6 = session.createQuery("FROM Animal WHERE estado = :estado", Animal.class)
+                .setParameter("estado", estado)
+                .uniqueResult();
 
 
-        if (animal6.getEstado()==RecienAb || animal6.getEstado()==TiempoRef){
-        System.out.println("Inserte los datos de la persona que va a adoptar al animal");
-            Scanner scanner = new Scanner(System.in);
-            Scanner scanner2 = new Scanner(System.in);
+        if (animal6 != null) {
+            System.out.println("El estado de este animal es: " + animal6.getEstado());
 
-            // Obtener datos de la familia
-            System.out.print("Nombre: ");
-            animal6.setNombreF(scanner.nextLine());
-            System.out.print("Edad: ");
-            animal6.setEdadF(scanner2.nextInt());
-            System.out.print("Ciudad: ");
-            animal6.setCiudadF(scanner.nextLine());
-        } if (animal6.getEstado()==ProxAcog) {
-            System.out.println("Tristemente la familia abandono el proceso de acoger");
 
-            animal6.setEstado(TiempoRef);
+            if (animal6.getEstado() == Estado.RecienAb || animal6.getEstado() == Estado.TiempoRef) {
+                System.out.println("Inserte los datos de la persona que va a adoptar al animal");
+                Scanner scanner = new Scanner(System.in);
+                Scanner scanner2 = new Scanner(System.in);
+
+
+                System.out.print("Nombre: ");
+                animal6.setNombreF(scanner.nextLine());
+                System.out.print("Edad: ");
+                animal6.setEdadF(scanner2.nextInt());
+                System.out.print("Ciudad: ");
+                animal6.setCiudadF(scanner.nextLine());
+            } else if (animal6.getEstado() == Estado.ProxAcog) {
+                System.out.println("Tristemente la familia abandonó el proceso de acoger");
+                animal6.setEstado(Estado.TiempoRef);
+            } else {
+                System.out.println("No existe ese estado");
+            }
+
+
+            session.beginTransaction();
+            session.update(animal6);
+            session.getTransaction().commit();
 
         } else {
-            System.out.println("No existe ese estado");
+            System.out.println("No se encontró un animal con el estado especificado.");
         }
+
+        session.close();
         return animal6;
     }
+
 
 
     /**
