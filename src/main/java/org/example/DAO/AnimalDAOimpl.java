@@ -116,7 +116,7 @@ public class AnimalDAOimpl implements IAnimal{
 
 
             if (animal6.getEstado() == Estado.RecienAb || animal6.getEstado() == Estado.TiempoRef) {
-                System.out.println("Inserte los datos de la persona que va a adoptar al animal");
+                System.out.println("Inserte los datos de la persona que quiere adoptar al animal");
                 Scanner scanner = new Scanner(System.in);
                 Scanner scanner2 = new Scanner(System.in);
 
