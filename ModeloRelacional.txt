@@ -1,0 +1,1 @@
+Animal(-id-, nombre, especie, edad, desc, estado, nombreF, edadF, ciudadF)

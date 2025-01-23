@@ -34,7 +34,7 @@ public class AnimalDAOimpl implements IAnimal{
 
     /**
      * @param id
-     * @return Segun id
+     * @return segun id
      */
     @Override
     public Animal findById(Integer id) {

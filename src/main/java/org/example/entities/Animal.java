@@ -104,7 +104,7 @@ public class Animal implements Serializable {
     }
 
     public void setEspecie(Animales especie) {
-        especie = especie;
+        this.especie = especie;
     }
 
     public String getNombre() {
